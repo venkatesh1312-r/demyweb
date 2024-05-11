@@ -99,17 +99,17 @@ public class HomeController {
 	public String EmployeeLogin(@RequestParam("email") String email, @RequestParam("password") String password,
 			Model model) {
 		EmployeeEntity loggedInEmployee = employeeService.employeeLogin(email, password);
-
+//System.out.println(loggedInEmployee.toString());
 		if (loggedInEmployee != null) {
 			session.setAttribute("loggedInEmployee", loggedInEmployee);
 			
-			Long employeeCount = employeeService.employeeCount();
+//			Long employeeCount = employeeService.employeeCount();
 			Long careerCount = careerService.careerCount();
 			Long getTouchCount = getTouchService.getTouchCount();
 
 //			System.out.println(employeeCount);
 
-			model.addAttribute("employeeCount", employeeCount);
+//			model.addAttribute("employeeCount", employeeCount);
 			model.addAttribute("careerCount", careerCount);
 			model.addAttribute("getTouchCount", getTouchCount);
 

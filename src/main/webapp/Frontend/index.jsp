@@ -35,7 +35,9 @@
     <script src="<c:url value='lib/counterup/counterup.min.js'/>"></script>
     <script src="<c:url value='lib/owlcarousel/owl.carousel.min.js'/>"></script>
     <script src="<c:url value='lib/lightbox/js/lightbox.min.js'/>"></script>
+<style type="text/css">
 
+</style>
 </head>
 <body>
     
@@ -59,14 +61,14 @@
             <a href="#"><button class="btn">Read More</button></a>
         </div>
     </div>
-  </section>
+  </section><br>
 
-  <div class="pt-5 pb-5" style="background-color: #f2f2f2;">
+  <div class="pt-5 pb-5" style="background-color: #f2f2f2; width:103vw;">
     <div class="container">
       <div class="row">
         <div class="section-head col-sm-12" id="service">
           <h1>Our Services</h1>
-          <p>We help you to build high-quality digital solutions and products as well as deliver a wide range of related professional services. We are providing world-class service to our clients.
+          <p id="service_para">We help you to build high-quality digital solutions and products as well as deliver a wide range of related professional services. We are providing world-class service to our clients.
             </p>
         </div>
         <div class="col-lg-4 col-sm-6">

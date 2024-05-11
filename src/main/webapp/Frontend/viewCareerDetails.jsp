@@ -34,12 +34,12 @@
    
    
  <section id="home" class="home">
-        <h2>Home / Add Employee</h2>
+        <h2>Home / View Career Person</h2>
     </section>
 
    
 <section id="contact" class="contact">
-        <h1 class="heading">Add Employee</h1>
+        <h1 class="heading">View Career</h1>
         <p>Job Opening in IT Company. Apply Now!</p>
     </section>
     
@@ -49,16 +49,25 @@
         <img src="./images/pexels-andrea-piacquadio-845434.jpg" class="img-fluid" alt="Team member 1">
     </div>
     <div class="contact-form d-flex justify-content-center" style="margin-top: 0%">
-        <form action="./addEmployee" method="POST" enctype="multipart/form-data">
+        <form action="./edit" method="POST" modelAttribute="emp">
+        
     <span style="color: green; text-align: center; margin:0px 30px;">${msg}</span><br><br><br>
+    
     <span style="color: red; text-align: center; margin:0px 30px;">${Errormsg}</span><br><br><br>
 
-    <input type="text" name="name" placeholder="Name" class="contact-form-email" required>
-    <input type="email" name="email" placeholder="Email" class="contact-form-email" required>
-    <input type="password" name="password" placeholder="Password" class="contact-form-email" required>
-    <input type="text" name="role" placeholder="Role" class="contact-form-email" required>
-    <input type="file" name="offerLetter" class="contact-form-email" required> <!-- Adjusted name attribute -->
-    <input type="submit" value="Add" name="submit" class="contact-form-btn">
+    <input type="text" name="id" placeholder="id" class="contact-form-email" value="${emp.id}" required readonly style="background:lightblue">
+
+    <input type="text" name="name" placeholder="Name" class="contact-form-email" value="${emp.name}" required>
+
+    <input type="email" name="email" placeholder="Email" class="contact-form-email" value="${emp.email}" required readonly style="background:lightblue">
+
+    <input type="password" name="password" placeholder="Password" class="contact-form-email" value="${emp.password}" required>
+
+    <input type="text" name="role" placeholder="Role" class="contact-form-email" value="${emp.role}" required>
+
+    
+
+    <input type="submit" value="Update" name="submit" class="contact-form-btn">
 </form>
 
     </div>

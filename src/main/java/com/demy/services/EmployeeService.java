@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.demy.Entites.EmployeeEntity;
+
+import jakarta.mail.Multipart;
 
 
 public interface EmployeeService 
@@ -35,11 +38,14 @@ public interface EmployeeService
     public EmployeeEntity addEmployee(EmployeeEntity employee);
 
 
-    public HttpStatus sendAddEmail(String email,String user);
+    public HttpStatus sendAddEmail(String email,String user,String offerLetter);
     
     public void delete(Long id);
     
     public EmployeeEntity editEmployee(EmployeeEntity employee);
+    
+    public EmployeeEntity updateEmployee(EmployeeEntity employee);
+
 
 
     

@@ -48,7 +48,7 @@
                     </div>
                 </li>
                            
-                <li><a href="./careers">Career</a></li>
+                <li><a href="./viewCareers">Career</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="./logout" class="btn btn-danger">Logout</a></li>
             </ul>

@@ -55,15 +55,14 @@ font-size: 120%;
    
    
  <section id="home" class="home">
-        <h2>Home / Staff</h2>
+        <h2>Home / Careers</h2>
     </section>
 
 <br>
 <br>
 <br>
-
 <div class="container-fluid">
-    <h2 class="text-center">Staff Details&nbsp;&nbsp;&nbsp;<a href="./addEmployee" class="btn btn-primary">Add Employee</a></h2>
+    <h2 class="text-center">Careers Details</h2>
     <span style="color: green; text-align: center; margin:0px 30px;">${msg}</span><br><br><br>
 
     <table class="table table-striped">
@@ -71,44 +70,24 @@ font-size: 120%;
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Offerletter</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>Status</th>
+                <th>Experience</th>
+                <th>Resume</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-                <c:forEach var="employee" items="${employees}">
-    <tr>
-        <td>${employee.id}</td>
-        <td>${employee.name}</td>
-        <td>${employee.email}</td>
-        <td>${employee.role}</td>
-        <td>
-          ${employee.offerLetter }
-        </td>   
- <c:choose>
-            <c:when test="${sessionScope.loggedInEmployee.role=='Manager'}">
-                <td>
-                    <a href="/edit?id=${employee.id}" class="btn btn-primary">Edit</a>
-                </td>
-                <td>
-                    <c:choose>
-                        <c:when test="${sessionScope.loggedInEmployee.id == employee.id}">
-                            <button class="btn btn-danger" disabled>Delete</button>
-                        </c:when>                        <c:otherwise>
-                            <a href="/delete?id=${employee.id}" class="btn btn-danger">Delete</a>
-                        </c:otherwise>
-                    </c:choose>
-                </td>
-            </c:when>
-            
-        </c:choose>
-       
-    </tr>
-</c:forEach>
-
+            <c:forEach var="career" items="${careers}">
+                <tr>
+                    <td>${career.id}</td>
+                    <td>${career.name}</td>
+                    <td>${career.status}</td>
+                    <td>${career.experience}</td>
+                    <td><a href="/download/${career.resumePath}" class="btn btn-success">Download File</a>
+                    </td>
+                    <td><a href=" b?careerId=${career.id}" class="btn btn-primary">View Details</a></td>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
 </div>

@@ -14,6 +14,7 @@ public interface CareerService
 
 	  
 	  public HttpStatus sendEmail(String email,String user);
+	  
 	
 
 

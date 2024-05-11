@@ -38,7 +38,7 @@
     </section>
 
    
-   <section id="career-heading" class="career-heading">
+<section id="contact" class="contact">
         <h1 class="heading">Update Employee</h1>
         <p>Job Opening in IT Company. Apply Now!</p>
     </section>
@@ -53,21 +53,17 @@
     <span style="color: green; text-align: center; margin:0px 30px;">${msg}</span><br><br><br>
     <span style="color: red; text-align: center; margin:0px 30px;">${Errormsg}</span><br><br><br>
 
-    <input type="text" name="id" placeholder="id" class="contact-form-email" value="${emp.id}" required readonly>
+    <input type="text" name="id" placeholder="id" class="contact-form-email" value="${emp.id}" required readonly style="background:lightblue">
 
     <input type="text" name="name" placeholder="Name" class="contact-form-email" value="${emp.name}" required>
 
-    <input type="email" name="email" placeholder="Email" class="contact-form-email" value="${emp.email}" required readonly>
+    <input type="email" name="email" placeholder="Email" class="contact-form-email" value="${emp.email}" required readonly style="background:lightblue">
 
     <input type="password" name="password" placeholder="Password" class="contact-form-email" value="${emp.password}" required>
 
     <input type="text" name="role" placeholder="Role" class="contact-form-email" value="${emp.role}" required>
 
-    <select name="priority" class="contact-form-email" required>
-        <option value="1" ${emp.priority == 1 ? 'selected' : ''}>High</option>
-        <option value="2" ${emp.priority == 2 ? 'selected' : ''}>Medium</option>
-        <option value="3" ${emp.priority == 3 ? 'selected' : ''}>Low</option>
-    </select>
+    
 
     <input type="submit" value="Update" name="submit" class="contact-form-btn">
 </form>

@@ -9,11 +9,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.demy.Entites.EmployeeEntity;
 import com.demy.repositories.EmployeeRepository;
 
+import jakarta.mail.Multipart;
 import jakarta.servlet.http.HttpSession;
+
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.http.HttpStatus;
+import java.io.File;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -114,42 +122,52 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public EmployeeEntity addEmployee(EmployeeEntity employee) {
+	public EmployeeEntity addEmployee(EmployeeEntity employee) 
+	{
+		System.out.println(employee.toString());
 		// TODO Auto-generated method stub
 		return employeeRepository.save(employee);
 	}
 
 	@Override
-	public HttpStatus sendAddEmail(String email,String user) {
-		try {
-		    SimpleMailMessage message = new SimpleMailMessage();
-		    message.setSubject("Congratulations on Your Onboarding to DSS Software Company!");
-		    message.setText("Dear "+user+",\r\n"
-		    		+ "\r\n"
-		    		+ "On behalf of the entire HR team at DSS Software Company, I would like to extend our warmest congratulations to you on your successful onboarding to our esteemed organization!\r\n"
-		    		+ "\r\n"
-		    		+ "We are thrilled to have you join our team and embark on this exciting journey together. Your skills, experience, and dedication will undoubtedly contribute significantly to our company's success.\r\n"
-		    		+ "\r\n"
-		    		+ "We understand that starting a new role can be both exhilarating and challenging, but please rest assured that our team is here to support you every step of the way. Should you have any questions or need assistance with anything, please do not hesitate to reach out to us.\r\n"
-		    		+ "\r\n"
-		    		+ "Once again, congratulations on becoming a part of the DSS Software Company family! We look forward to seeing your remarkable contributions and wish you all the best as you begin this new chapter in your career.\r\n"
-		    		+ "\r\n"
-		    		+ "Warm regards,\r\n"
-		    		+ "\r\n"
-		    		+ "Mahalakshmi\r\n"
-		    		+ "HR Team\r\n"
-		    		+ "DSS Software Company");
-		    message.setTo(email);
+	public HttpStatus sendAddEmail(String email, String user,String offerLetter) {
+	    try {
+	        jakarta.mail.internet.MimeMessage message = javaMailSender.createMimeMessage();
+	        MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-		    javaMailSender.send(message);
+	        helper.setSubject("Congratulations on Your Onboarding to DSS Software Company!");
+	        helper.setTo(email);
 
-		    return HttpStatus.OK; // Email sent successfully
-		} catch (Exception e) 
-		{
-		    e.printStackTrace();
-		    return HttpStatus.INTERNAL_SERVER_ERROR; // Internal Server Error		}
-		// TODO Auto-generated method stub
-		}
+	        // Set the email body
+	        String emailBody = "Dear " + user + ",\r\n"
+	                + "\r\n"
+	                + "On behalf of the entire HR team at DSS Software Company, I would like to extend our warmest congratulations to you on your successful onboarding to our esteemed organization!\r\n"
+	                + "\r\n"
+	                + "We are thrilled to have you join our team and embark on this exciting journey together. Your skills, experience, and dedication will undoubtedly contribute significantly to our company's success.\r\n"
+	                + "\r\n"
+	                + "We understand that starting a new role can be both exhilarating and challenging, but please rest assured that our team is here to support you every step of the way. Should you have any questions or need assistance with anything, please do not hesitate to reach out to us.\r\n"
+	                + "\r\n"
+	                + "Once again, congratulations on becoming a part of the DSS Software Company family! We look forward to seeing your remarkable contributions and wish you all the best as you begin this new chapter in your career.\r\n"
+	                + "\r\n"
+	                + "Warm regards,\r\n"
+	                + "\r\n"
+	                + "Mahalakshmi\r\n"
+	                + "HR Team\r\n"
+	                + "DSS Software Company";
+
+	        helper.setText(emailBody);
+
+	        // Add attachment
+	        FileSystemResource file = new FileSystemResource(new File("uploads\\" + offerLetter));
+	        helper.addAttachment("OfferLetter.pdf", file); // Change "OfferLetter.pdf" to the desired name of the attachment
+
+	        javaMailSender.send(message);
+
+	        return HttpStatus.OK; // Email sent successfully
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return HttpStatus.INTERNAL_SERVER_ERROR; // Internal Server Error
+	    }
 	}
 
 	@Override
@@ -182,6 +200,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// TODO Auto-generated method stub
 		return employeeRepository.count();
 	}
+
+	@Override
+	public EmployeeEntity updateEmployee(EmployeeEntity employee)
+	{
+		employeeRepository.updateEmployee(employee.getName(),employee.getPassword(),employee.getRole(),employee.getId());
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 	
 }
