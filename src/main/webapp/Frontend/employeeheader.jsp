@@ -41,18 +41,26 @@
                         Leave
                     </a>
                     <div class="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item text-dark" href="#">Apply</a>
-                        <a class="dropdown-item text-dark" href="#">Status</a>
-                        <a class="dropdown-item text-dark" href="#">Approve</a>
+                        <a class="dropdown-item text-dark" href="/applyLeave">Apply</a>
+                        <a class="dropdown-item text-dark" href="/leaveStatus">Status</a>
                         
+                      <c:if test="${sessionScope.loggedInEmployee.getRole() eq 'Manager' || sessionScope.loggedInEmployee.getRole() eq 'HR'}">
+    <a class="dropdown-item text-dark" href="#">Approve</a>
+</c:if>
+
                     </div>
                 </li>
                            
                 <li><a href="./viewCareers">Career</a></li>
-                <li><a href="#contact">Contact</a></li>
                 <li><a href="./logout" class="btn btn-danger">Logout</a></li>
             </ul>
         </nav>
     </header>
+    
+    
+<c:if test="${empty sessionScope.loggedInEmployee}">
+    <c:redirect url="./home"/>
+</c:if>
+    
 </body>
 </html>

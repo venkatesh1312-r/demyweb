@@ -30,7 +30,7 @@ public class FileDownloadController {
         // Define the file path
     
 
-        Path filePath = Paths.get("uploads\\").resolve(fileName).normalize();
+        Path filePath = Paths.get(FILE_DIRECTORY).resolve(fileName).normalize();
         System.out.println("kio");
         try {
             // Load file as Resource

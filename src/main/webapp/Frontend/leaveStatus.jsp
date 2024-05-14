@@ -54,7 +54,7 @@ font-size: 120%;
    
    
  <section id="home" class="home">
-        <h2>Home / Careers</h2>
+        <h2>Home / Leaves Status</h2>
     </section>
 
 <br>
@@ -68,25 +68,38 @@ font-size: 120%;
         <thead class="thead-dark">
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>Employee Name</th>
+                <th>Employee Email</th>
+                <th>Start date</th>
+                <th>End date</th>
+                <th>Reason</th>
                 <th>Status</th>
-                <th>Experience</th>
-                <th>Resume</th>
-                <th>Actions</th>
+                
+                
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="career" items="${careers}">
-                <tr>
-                    <td>${career.id}</td>
-                    <td>${career.name}</td>
-                    <td>${career.status}</td>
-                    <td>${career.experience}</td>
-                    <td><a href="/download/${career.resumePath}" class="btn btn-success">Download File</a>
-                    </td>
-<td><a href="viewCareerDetails?email=${career.email}" class="btn btn-primary">View Details</a></td>
-                </tr>
-            </c:forEach>
+             <c:forEach var="leave" items="${leavesStatus}">
+            <tr>
+                <td>${leave.id}</td>
+                <td>${leave.employeeName}</td>
+                <td>${leave.employeeEmail}</td>
+                <td>${leave.startDate}</td>
+                <td>${leave.endDate}</td>
+                <td>${leave.reason}</td>
+<c:choose>
+    <c:when test="${leave.status eq 1}">
+        <td>Approved</td>
+    </c:when>
+    <c:when test="${leave.status eq 0}">
+        <td>Not Approved</td>
+    </c:when>
+    <c:otherwise>
+        <td>Unknown</td> <!-- Handle any other status values -->
+    </c:otherwise>
+</c:choose>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 </div>

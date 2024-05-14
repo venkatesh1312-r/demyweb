@@ -68,13 +68,27 @@ public class EmployeeController
 	}
 	
 	@GetMapping("/staff")
-	public String getStaffDetails(Model model)
-	{
-		List<EmployeeEntity> employees=employeeService.findAll();
-//		System.out.println(employees);
-		model.addAttribute("employees", employees);
-		return "staff";
+	public String getStaffDetails(Model model, HttpSession session) {
+	    EmployeeEntity loggedInEmployee = (EmployeeEntity) session.getAttribute("loggedInEmployee");
+
+	    if (loggedInEmployee != null && "manager".equalsIgnoreCase(loggedInEmployee.getRole().toLowerCase())) 
+	    {
+	        List<EmployeeEntity> employees = employeeService.findAll();
+	        model.addAttribute("employees", employees);
+	    } else {
+	        if (loggedInEmployee != null) {
+		    	String msg1="display:none";
+
+	            EmployeeEntity employee = employeeService.findEmail(loggedInEmployee.getEmail());
+	            model.addAttribute("employee", employee);
+		        model.addAttribute("msg1",msg1);
+
+	        }
+	    }
+
+	    return "staff";
 	}
+
 	
 	@GetMapping("/addEmployee")
 	public String addEmployees()
@@ -190,7 +204,21 @@ public class EmployeeController
 		return "viewCareers";
 	}
 	
+	@GetMapping("/viewCareerDetails")
+	public String viewCareerPersonRecord(@RequestParam("email") String email, Model model) {
+	    // Assuming you have a method in your repository to find a career by its ID
+	    Career career = careerRepository.findByEmail(email);
+	    
+	    // Check if the career exists
+	    if(career != null) {
+	        // If the career exists, you might want to do something with it
+	        System.out.println(career);
+	        model.addAttribute("career", career);
+	        
+	        return "viewCareerDetails";
+	    } 
+	    return "viewCareers"; // Assuming you have a view named viewCareers
+	}
 
-	
-	
+
 }

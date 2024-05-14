@@ -158,7 +158,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	        helper.setText(emailBody);
 
 	        // Add attachment
-	        FileSystemResource file = new FileSystemResource(new File("uploads\\" + offerLetter));
+	        FileSystemResource file = new FileSystemResource(new File(offerLetter));
 	        helper.addAttachment("OfferLetter.pdf", file); // Change "OfferLetter.pdf" to the desired name of the attachment
 
 	        javaMailSender.send(message);

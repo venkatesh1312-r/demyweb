@@ -61,7 +61,7 @@
 
     <input type="password" name="password" placeholder="Password" class="contact-form-email" value="${emp.password}" required>
 
-    <input type="text" name="role" placeholder="Role" class="contact-form-email" value="${emp.role}" required>
+    <input type="text" name="role" placeholder="Role" class="contact-form-email" value="${emp.role}" readOnly required style="background:lightblue">
 
     
 

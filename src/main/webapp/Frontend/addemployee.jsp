@@ -8,7 +8,9 @@
 <title>Insert title here</title>
  
 <style type="text/css">
-
+.error {
+  color: red;
+}
 .home{
     min-height: 70vh;
     width: 100vw;
@@ -56,7 +58,7 @@
     <input type="text" name="name" placeholder="Name" class="contact-form-email" required>
     <input type="email" name="email" placeholder="Email" class="contact-form-email" required>
     <input type="password" name="password" placeholder="Password" class="contact-form-email" required>
-    <input type="text" name="role" placeholder="Role" class="contact-form-email" required>
+<input type="text" name="role" id="role" placeholder="Role" class="contact-form-email" required onchange="validateRole(this)"><br>
     <input type="file" name="offerLetter" class="contact-form-email" required> <!-- Adjusted name attribute -->
     <input type="submit" value="Add" name="submit" class="contact-form-btn">
 </form>
@@ -66,10 +68,21 @@
 
 
 
-    
+    <script>
+function validateRole(input) {
+    var role = input.value.trim();
 
+    // Convert the role to lowercase for case-insensitive comparison
+    var lowercaseRole = role.toLowerCase();
 
-      
+    // Check if the role contains "manager" in any case
+    if (lowercaseRole.includes("manager")) {
+        alert("Role cannot contain 'Manager'.");
+        // Clear the value of the input field
+        input.value = "";
+    }
+}
+</script>
    <%@ include file="footer.jsp" %>
 </body>
 </html>

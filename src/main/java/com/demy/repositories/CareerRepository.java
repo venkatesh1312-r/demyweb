@@ -13,6 +13,9 @@ public interface CareerRepository extends JpaRepository<Career, Long>
 {
 	@Query(value = "SELECT * FROM careers c WHERE c.id = (SELECT MAX(c2.id) FROM careers c2 WHERE c.email = c2.email)", nativeQuery = true)
     List<Career> findAllHighestIdByEmail();
+	
+	 @Query(value = "SELECT * FROM careers WHERE email = ?1", nativeQuery = true)
+     Career findByEmail(String email);
 
 }
 
