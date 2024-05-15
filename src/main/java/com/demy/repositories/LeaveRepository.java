@@ -24,7 +24,7 @@ public interface LeaveRepository extends JpaRepository<Leaves, Long>
 	@Query(value = "SELECT COUNT(*) FROM leaves WHERE employee_email IN (:email)", nativeQuery = true)
     Long getAppliedLeaveCount(String email);
 	
-	@Query(value = "SELECT COUNT(*) FROM leaves WHERE employee_email IN (:email) AND Status="+1, nativeQuery = true)
+	@Query(value = "SELECT COUNT(*) FROM leaves WHERE employee_email IN (:email) AND Status="+2, nativeQuery = true)
     Long getApprovedLeaveCount(String email);
 	
 	 @Transactional

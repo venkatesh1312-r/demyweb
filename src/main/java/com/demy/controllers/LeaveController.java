@@ -90,8 +90,6 @@ public class LeaveController
 	    
 	    leave.setStatus(0);
 	    
-	    
-	    
 	    // Use the formatted dates as needed
 //	    System.out.println("Formatted Start Date: " + formattedStartDate);
 //	    System.out.println("Formatted End Date: " + formattedEndDate);

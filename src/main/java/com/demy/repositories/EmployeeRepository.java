@@ -19,6 +19,9 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Long>
 	 @Query(value = "SELECT * FROM employees WHERE email = ?1", nativeQuery = true)
      EmployeeEntity findByEmail(String email);
 	 
+	 @Query(value = "SELECT * FROM employees WHERE LOWER(role) = LOWER(?1)", nativeQuery = true)
+     EmployeeEntity findByRole(String role);
+	 
 	 @Transactional
 	    @Modifying
 	    @Query(value = "UPDATE employees SET password = ?2 WHERE email = ?1", nativeQuery = true)

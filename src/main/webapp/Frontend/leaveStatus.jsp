@@ -88,14 +88,14 @@ font-size: 120%;
                 <td>${leave.endDate}</td>
                 <td>${leave.reason}</td>
 <c:choose>
-    <c:when test="${leave.status eq 1}">
+    <c:when test="${leave.status eq 2}">
         <td>Approved</td>
     </c:when>
     <c:when test="${leave.status eq 0}">
         <td>Not Approved</td>
     </c:when>
     <c:otherwise>
-        <td>Unknown</td> <!-- Handle any other status values -->
+        <td>Approved By HR</td> <!-- Handle any other status values -->
     </c:otherwise>
 </c:choose>
             </tr>

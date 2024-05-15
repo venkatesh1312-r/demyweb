@@ -11,7 +11,9 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.demy.Entites.EmployeeEntity;
 import com.demy.Entites.Leaves;
+import com.demy.repositories.EmployeeRepository;
 import com.demy.repositories.LeaveRepository;
 
 @Service
@@ -24,6 +26,21 @@ public class leaveServiceImpl implements LeavesService {
 	@Autowired
 	private JavaMailSender javaMailSender;
 	
+
+	@Autowired
+	private EmployeeRepository employeeRepository;
+	
+	
+	public EmployeeRepository getEmployeeRepository() {
+		return employeeRepository;
+	}
+
+
+	public void setEmployeeRepository(EmployeeRepository employeeRepository) {
+		this.employeeRepository = employeeRepository;
+	}
+
+
 	public LeaveRepository getLeaverepo() {
 		return leaverepo;
 	}
@@ -53,6 +70,10 @@ public class leaveServiceImpl implements LeavesService {
 		 {
 		    appliedleave.setStatus(1);
 		    
+		    if("manager".equals(appliedleave.getEmployeeRole().toLowerCase()))
+		    {
+		    	appliedleave.setStatus(2);
+		    }
 		    leaverepo.save(appliedleave);
 		    
 			HttpStatus codes=LeaveApprovalConfirmationMail(leaveForm); 
@@ -144,9 +165,15 @@ public class leaveServiceImpl implements LeavesService {
 	        SimpleMailMessage message = new SimpleMailMessage();
 
 	        message.setSubject("Leave Application Alert: New Leave Application at DSS");
+             
+	    
+	        EmployeeEntity e1=employeeRepository.findByRole("manager");
+	        
+	        EmployeeEntity e2=employeeRepository.findByRole("hr");
 
-	        String managerEmail = "veeravinu345@gmail.com"; // Assuming you have the manager's email in the leave form
-	        String hrEmail = "veeravinu345@gmail.com"; // Replace with the actual HR email address
+	        
+	        String managerEmail =e1.getEmail(); 
+	        String hrEmail = e2.getEmail(); 
 
 	        // Message for manager
 	        String managerMessage = "Dear Manager,\r\n"
