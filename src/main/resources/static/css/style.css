@@ -1376,6 +1376,8 @@ body
         
 }
 
+
+
  @media screen and (max-width: 900px) {
     .contact-in {
         flex-direction: column; /* Set flex-direction to column for mobile */

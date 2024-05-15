@@ -18,6 +18,7 @@ import com.demy.services.CareerService;
 import com.demy.services.EmployeeService;
 import com.demy.services.GetTouchService;
 import com.demy.services.GetTouchServiceImpl;
+import com.demy.services.LeavesService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -42,6 +43,18 @@ public class HomeController {
 
 	@Autowired
 	private GetTouchService getTouchService;
+
+	
+	@Autowired
+	private LeavesService leavesService;
+
+	public LeavesService getLeavesService() {
+		return leavesService;
+	}
+
+	public void setLeavesService(LeavesService leavesService) {
+		this.leavesService = leavesService;
+	}
 
 	public GetTouchService getGetTouchService() {
 		return getTouchService;
@@ -97,21 +110,29 @@ public class HomeController {
 
 	@PostMapping("/employeeLogin")
 	public String EmployeeLogin(@RequestParam("email") String email, @RequestParam("password") String password,
-			Model model) {
+			Model model) 
+	{
 		EmployeeEntity loggedInEmployee = employeeService.employeeLogin(email, password);
 //System.out.println(loggedInEmployee.toString());
 		if (loggedInEmployee != null) {
 			session.setAttribute("loggedInEmployee", loggedInEmployee);
 			
-//			Long employeeCount = employeeService.employeeCount();
+			Long employeeCount = employeeService.employeeCount();
 			Long careerCount = careerService.careerCount();
 			Long getTouchCount = getTouchService.getTouchCount();
+			Long leavesAppliedCount=leavesService.getAppliedLeaveCount(email);
+			Long leavesApprovedCount=leavesService.getApprovedLeaveCount(email);
+
 
 //			System.out.println(employeeCount);
 
-//			model.addAttribute("employeeCount", employeeCount);
+			model.addAttribute("employeeCount", employeeCount);
 			model.addAttribute("careerCount", careerCount);
 			model.addAttribute("getTouchCount", getTouchCount);
+			model.addAttribute("leavesAppliedCount",leavesAppliedCount);
+			model.addAttribute("leavesApprovedCount",leavesApprovedCount);
+
+
 
 
 			return "dashboard";
@@ -122,18 +143,25 @@ public class HomeController {
 	}
 
 	@GetMapping("/dashboard")
-	public String getDashboard(Model model) {
+	public String getDashboard(Model model) 
+	{
 
+		EmployeeEntity e=(EmployeeEntity) session.getAttribute("loggedInEmployee");
+		
 		Long employeeCount = employeeService.employeeCount();
 		Long careerCount = careerService.careerCount();
 		Long getTouchCount = getTouchService.getTouchCount();
+		Long leavesAppliedCount=leavesService.getAppliedLeaveCount(e.getEmail());
+		Long leavesApprovedCount=leavesService.getApprovedLeaveCount(e.getEmail());
 
-		
+
 //		System.out.println(employeeCount);
 
 		model.addAttribute("employeeCount", employeeCount);
 		model.addAttribute("careerCount", careerCount);
 		model.addAttribute("getTouchCount", getTouchCount);
+		model.addAttribute("leavesAppliedCount",leavesAppliedCount);
+		model.addAttribute("leavesApprovedCount",leavesApprovedCount);
 
 		return "dashboard";
 	}

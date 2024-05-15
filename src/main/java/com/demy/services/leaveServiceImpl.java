@@ -250,4 +250,55 @@ public class leaveServiceImpl implements LeavesService {
 		return leaves;
 	}
 
+
+	@Override
+	public Long getApprovedLeaveCount(String email) {
+		// TODO Auto-generated method stub
+		return leaverepo.getApprovedLeaveCount(email);
+	}
+
+
+	@Override
+	public Long getAppliedLeaveCount(String email) 
+	{
+		// TODO Auto-generated method stub
+		return leaverepo.getAppliedLeaveCount(email);
+	}
+
+
+	@Override
+	public List<Leaves> leavesStatus() {
+		// TODO Auto-generated method stub
+		return leaverepo.findAll();
+	}
+
+
+	@Override
+	public int approve(int id, int role,Leaves leaveEntity) {
+		// TODO Auto-generated method stub
+		
+		if(role==1)
+		{
+			leaverepo.updateLeaveStatusToOne(id);
+
+		}
+		else
+		{
+			leaverepo.updateLeaveStatusToTwo(id);
+			LeaveApprovalConfirmationMail(leaveEntity);
+		}
+		
+		
+		return 0;
+	}
+
+
+	@Override
+	public Leaves findByIds(int id)
+	{
+		return leaverepo.findByIdLeaveId(id);
+	}
+
+
+	
 }

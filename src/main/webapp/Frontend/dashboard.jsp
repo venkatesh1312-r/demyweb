@@ -80,7 +80,7 @@
 							alt="staff icon"><br>
 						<br>
 						<h5>Staff Count</h5>
-						<h1>${employeeCount}Employees</h1>
+						<h1>${employeeCount}</h1>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6">
@@ -93,7 +93,7 @@
 						<br>
 						<br>
 						<h5>Leaves</h5>
-						<h1>6/10</h1>
+						<h1>${leavesAppliedCount}/${leavesApprovedCount}</h1>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6">

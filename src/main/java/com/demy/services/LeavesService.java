@@ -19,6 +19,20 @@ public interface LeavesService
 	public HttpStatus LeaveApprovalConfirmationMail(Leaves leaveForm);
 	
 	public List<Leaves> leavesStatus(String email);
+	
+	public List<Leaves> leavesStatus();
+
+
+    public Long getApprovedLeaveCount(String emai);
+    
+    public Long getAppliedLeaveCount(String email);
+    
+    public int approve(int id,int role,Leaves leaveEntity);
+    
+    public Leaves findByIds(int id);
+
+    
+
 
 
 

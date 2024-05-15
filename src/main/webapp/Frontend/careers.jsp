@@ -127,7 +127,7 @@
                   Digital Marketer
                 </label>
                 </div>
-                <input type="number" id="experience" name="experience" required placeholder="Years of Experience" class="career-form-experience">
+                <input type="number" id="experience" name="experience" required placeholder="Years of Experience" class="career-form-experience"><br><br><br><br>
                 <textarea placeholder="Other Details" name="details" class="career-form-txtarea" required></textarea>
                 <div class="file">
                     <h2 class="name">Upload Your Resume</h2>

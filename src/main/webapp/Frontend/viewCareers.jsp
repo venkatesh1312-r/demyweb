@@ -84,7 +84,7 @@ font-size: 120%;
                     <td>${career.experience}</td>
                     <td><a href="/download/${career.resumePath}" class="btn btn-success">Download File</a>
                     </td>
-<td><a href="viewCareerDetails?email=${career.email}" class="btn btn-primary">View Details</a></td>
+<td><a href="viewCareerDetails?id=${career.id}" class="btn btn-primary">View Details</a></td>
                 </tr>
             </c:forEach>
         </tbody>

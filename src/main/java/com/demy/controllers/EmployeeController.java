@@ -205,12 +205,14 @@ public class EmployeeController
 	}
 	
 	@GetMapping("/viewCareerDetails")
-	public String viewCareerPersonRecord(@RequestParam("email") String email, Model model) {
+	public String viewCareerPersonRecord(@RequestParam("id") Long id, Model model) 
+	{
 	    // Assuming you have a method in your repository to find a career by its ID
-	    Career career = careerRepository.findByEmail(email);
+	    Career career = careerRepository.findByCareerId(id);
 	    
 	    // Check if the career exists
-	    if(career != null) {
+	    if(career != null) 
+	    {
 	        // If the career exists, you might want to do something with it
 	        System.out.println(career);
 	        model.addAttribute("career", career);

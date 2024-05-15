@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.SessionScope;
 
 import java.text.SimpleDateFormat;
@@ -18,6 +19,7 @@ import com.demy.Entites.EmployeeEntity;
 import com.demy.Entites.Leaves;
 import com.demy.repositories.LeaveRepository;
 import com.demy.services.LeavesService;
+import com.demy.services.leaveServiceImpl;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -129,10 +131,61 @@ public class LeaveController
 				
 	    List<Leaves> leavesStatus=leavesService.leavesStatus(e.getEmail());
 		
-	    System.out.println(leavesStatus);
+//	    System.out.println(leavesStatus);
+	    
 	    model.addAttribute("leavesStatus", leavesStatus);
 	    
 		
 		return "leaveStatus";
 	}
+	
+	@GetMapping("/approveLeave")
+	public String getapproveLeave(Model model)
+	{	    
+
+				
+	    List<Leaves> leavesStatus=leavesService.leavesStatus();
+		
+	    System.out.println(leavesStatus);
+	    
+	    model.addAttribute("leavesStatus", leavesStatus);
+		
+		return "approveLeave";
+	}
+	
+	@GetMapping("/approveLeaveById")
+	public String getApproveLeave(@RequestParam("id") int id,Model model)
+	{	    
+		EmployeeEntity e=(EmployeeEntity) session.getAttribute("loggedInEmployee");
+		
+		String role=e.getRole().toLowerCase();
+		
+		System.out.println(id);
+
+		Leaves l=leavesService.findByIds(id);
+		
+		List<Leaves> leavesStatus=leavesService.leavesStatus();
+	    
+	    model.addAttribute("leavesStatus", leavesStatus);
+
+		if(role.equals("hr"))
+		{
+			leavesService.approve(id, 1, l);
+			
+		    
+
+		}
+		else
+		{
+            leavesService.approve(id, 2, l);
+			
+		  
+			
+		}
+	    
+		
+		return "approveLeave";
+	}
+	
+	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -22,10 +23,17 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.http.HttpStatus;
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
+
+	@Value("${file.upload-dir}")
+	String FILE_DIRECTORY;
+	
+	
 	
 	@Autowired
 	private EmployeeRepository employeeRepository;
@@ -157,8 +165,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	        helper.setText(emailBody);
 
-	        // Add attachment
-	        FileSystemResource file = new FileSystemResource(new File(offerLetter));
+	     // Assuming you've resolved the path correctly
+	        Path filePath = Paths.get(FILE_DIRECTORY).resolve(offerLetter).normalize();
+
+	        // Convert the Path to a String
+	        String offerLetterPath = filePath.toString();
+
+	        // Create a FileSystemResource for the file
+	        FileSystemResource file = new FileSystemResource(new File(offerLetterPath));
+
+	        
 	        helper.addAttachment("OfferLetter.pdf", file); // Change "OfferLetter.pdf" to the desired name of the attachment
 
 	        javaMailSender.send(message);

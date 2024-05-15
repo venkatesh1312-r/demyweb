@@ -45,7 +45,7 @@
                         <a class="dropdown-item text-dark" href="/leaveStatus">Status</a>
                         
                       <c:if test="${sessionScope.loggedInEmployee.getRole() eq 'Manager' || sessionScope.loggedInEmployee.getRole() eq 'HR'}">
-    <a class="dropdown-item text-dark" href="#">Approve</a>
+    <a class="dropdown-item text-dark" href="/approveLeave">Approve</a>
 </c:if>
 
                     </div>
