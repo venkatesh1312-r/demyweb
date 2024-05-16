@@ -35,8 +35,38 @@
     <script src="<c:url value='lib/counterup/counterup.min.js'/>"></script>
     <script src="<c:url value='lib/owlcarousel/owl.carousel.min.js'/>"></script>
     <script src="<c:url value='lib/lightbox/js/lightbox.min.js'/>"></script>
-<style type="text/css">
 
+<style>
+.header .logo img {
+	width: 120%;
+	height: 7vh;
+	top: 0;
+	left: 0;
+}
+
+#services {
+	margin-top: -90px;
+}
+
+.service {
+	padding: 32px;
+	background-color: #fff;
+	box-shadow: var(--shadow);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	/* horizontal-offset vertical-offset blur-radius color */
+	border: 1px solid white;
+	border-radius: 10px;
+	margin: 90px;
+	height: 40vh;
+}
+
+.service h5 {
+	margin-bottom: 14px;
+}
+
+.service img {
+	width: 910px;
+}
 </style>
 </head>
 <body>

@@ -61,7 +61,7 @@ font-size: 120%;
 <br>
 <br>
 <div class="container-fluid">
-    <h2 class="text-center">Careers Details</h2>
+    <h2 class="text-center">Leave Details</h2>
     <span style="color: green; text-align: center; margin:0px 30px;">${msg}</span><br><br><br>
 
     <table class="table table-striped">
@@ -88,6 +88,10 @@ font-size: 120%;
                 <td>${leave.endDate}</td>
                 <td>${leave.reason}</td>
 <c:choose>
+
+ <c:when test="${leave.status eq 3}">
+        <td>Rejected</td>
+    </c:when>
     <c:when test="${leave.status eq 2}">
         <td>Approved</td>
     </c:when>

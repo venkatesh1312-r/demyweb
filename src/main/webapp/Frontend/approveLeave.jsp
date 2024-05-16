@@ -61,7 +61,7 @@ font-size: 120%;
 <br>
 <br>
 <div class="container-fluid">
-    <h2 class="text-center">Careers Details</h2>
+    <h2 class="text-center">Leave Details</h2>
     <span style="color: green; text-align: center; margin:0px 30px;">${msg}</span><br><br><br>
 
    <table class="table table-striped">
@@ -113,7 +113,7 @@ font-size: 120%;
                         <td><a href="#" class="btn btn-secondary">Reject</a></td>
                     </c:when>
                     <c:otherwise>
-                        <td>Unknown</td> <!-- Handle any other status values -->
+                        <td>Rejected</td> <!-- Handle any other status values -->
                         <td></td> <!-- Placeholder for action when status is unknown -->
                     </c:otherwise>
                 </c:choose>

@@ -36,5 +36,10 @@ public interface LeaveRepository extends JpaRepository<Leaves, Long>
 	    @Modifying
 	    @Query(value = "UPDATE leaves SET Status = 2 WHERE id = :leaveId", nativeQuery = true)
 	    void updateLeaveStatusToTwo(@Param("leaveId") int leaveId);
+	 
+	 @Transactional
+	    @Modifying
+	    @Query(value = "UPDATE leaves SET Status = 3 WHERE id = :leaveId", nativeQuery = true)
+	    void updateLeaveStatusToThree(@Param("leaveId") int leaveId);
 
 }

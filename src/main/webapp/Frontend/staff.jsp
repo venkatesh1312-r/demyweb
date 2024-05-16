@@ -66,68 +66,70 @@ font-size: 120%;
     <h2 class="text-center">Staff Details&nbsp;&nbsp;&nbsp;<a href="./addEmployee" class="btn btn-primary" style="${msg1}">Add Employee</a></h2>
     <span style="color: green; text-align: center; margin:0px 30px;">${msg}</span><br><br><br>
 
-   <table class="table table-striped">
-    <thead class="thead-dark">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Offerletter</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        <c:if test="${not empty employees}">
-            <c:forEach var="employee" items="${employees}">
+   <div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Offerletter</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:if test="${not empty employees}">
+                <c:forEach var="employee" items="${employees}">
+                    <tr>
+                        <td>${employee.id}</td>
+                        <td>${employee.name}</td>
+                        <td>${employee.email}</td>
+                        <td>${employee.role}</td>
+                        <td>
+                            <a href="/download/${employee.offerLetter}" class="btn btn-success">Download</a>
+                        </td>
+                        <c:choose>
+                            <c:when test="${sessionScope.loggedInEmployee.role == 'Manager'}">
+                                <td>
+                                    <a href="/edit?id=${employee.id}" class="btn btn-primary">Edit</a>
+                                </td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${sessionScope.loggedInEmployee.id == employee.id}">
+                                            <button class="btn btn-danger" disabled>Delete</button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="/delete?id=${employee.id}" class="btn btn-danger">Delete</a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+                            </c:when>
+                        </c:choose>
+                    </tr>
+                </c:forEach>
+            </c:if>
+            <c:if test="${not empty employee}">
                 <tr>
                     <td>${employee.id}</td>
                     <td>${employee.name}</td>
                     <td>${employee.email}</td>
                     <td>${employee.role}</td>
                     <td>
-                        <a href="/download/${employee.offerLetter}" class="btn btn-success">Download File</a>
+                        <a href="/download/${employee.offerLetter}" class="btn btn-success">Download</a>
                     </td>
-                    <c:choose>
-                        <c:when test="${sessionScope.loggedInEmployee.role == 'Manager'}">
-                            <td>
-                                <a href="/edit?id=${employee.id}" class="btn btn-primary">Edit</a>
-                            </td>
-                            <td>
-                                <c:choose>
-                                    <c:when test="${sessionScope.loggedInEmployee.id == employee.id}">
-                                        <button class="btn btn-danger" disabled>Delete</button>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <a href="/delete?id=${employee.id}" class="btn btn-danger">Delete</a>
-                                    </c:otherwise>
-                                </c:choose>
-                            </td>
-                        </c:when>
-                    </c:choose>
+                    <td>
+                        <a href="/edit?id=${employee.id}" class="btn btn-primary">Edit</a>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" disabled>Delete</button>
+                    </td>
                 </tr>
-            </c:forEach>
-        </c:if>
-        <c:if test="${not empty employee}">
-            <tr>
-                <td>${employee.id}</td>
-                <td>${employee.name}</td>
-                <td>${employee.email}</td>
-                <td>${employee.role}</td>
-                <td>
-                    <a href="/download/${employee.offerLetter}" class="btn btn-success">Download File</a>
-                </td>
-                <td>
-                    <a href="/edit?id=${employee.id}" class="btn btn-primary">Edit</a>
-                </td>
-                <td>
-                                        <button class="btn btn-danger" disabled>Delete</button>
-                </td>
-            </tr>
-        </c:if>
-    </tbody>
-</table>
+            </c:if>
+        </tbody>
+    </table>
+</div>
 
 </div>
 <%@ include file="footer.jsp" %>

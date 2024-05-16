@@ -64,6 +64,7 @@ font-size: 120%;
     <h2 class="text-center">Careers Details</h2>
     <span style="color: green; text-align: center; margin:0px 30px;">${msg}</span><br><br><br>
 
+    <div class="table-responsive">
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>
@@ -82,13 +83,14 @@ font-size: 120%;
                     <td>${career.name}</td>
                     <td>${career.status}</td>
                     <td>${career.experience}</td>
-                    <td><a href="/download/${career.resumePath}" class="btn btn-success">Download File</a>
-                    </td>
-<td><a href="viewCareerDetails?id=${career.id}" class="btn btn-primary">View Details</a></td>
+                    <td><a href="/download/${career.resumePath}" class="btn btn-success">Download File</a></td>
+                    <td><a href="viewCareerDetails?id=${career.id}" class="btn btn-primary">View Details</a></td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
+</div>
+
 </div>
 <%@ include file="footer.jsp" %>
 </body>

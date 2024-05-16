@@ -327,5 +327,15 @@ public class leaveServiceImpl implements LeavesService {
 	}
 
 
+	@Override
+	public int disApprove(int id) 
+	{
+		// TODO Auto-generated method stub
+		
+		leaverepo.updateLeaveStatusToThree(id);
+		return 1;
+	}
+
+
 	
 }

@@ -151,6 +151,18 @@ public class LeaveController
 		return "approveLeave";
 	}
 	
+	
+	
+	
+
+	@GetMapping("/disApproveLeave")
+	public String getdisApproveLeave(@RequestParam("id") int id,Model model)
+	{
+	  leavesService.disApprove(id);
+	  
+	  return "approveLeave";
+	}
+	
 	@GetMapping("/approveLeaveById")
 	public String getApproveLeave(@RequestParam("id") int id,Model model)
 	{	    

@@ -29,6 +29,8 @@ public interface LeavesService
     
     public int approve(int id,int role,Leaves leaveEntity);
     
+    public int disApprove(int id);
+    
     public Leaves findByIds(int id);
 
     
