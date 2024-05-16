@@ -160,7 +160,8 @@ public class LeaveController
 	{
 	  leavesService.disApprove(id);
 	  
-	  return "approveLeave";
+	// Assuming this code is part of a controller method
+	  return "redirect:/approveLeave";
 	}
 	
 	@GetMapping("/approveLeaveById")
@@ -194,7 +195,7 @@ public class LeaveController
 		}
 	    
 		
-		return "approveLeave";
+		  return "redirect:/approveLeave";
 	}
 	
 	

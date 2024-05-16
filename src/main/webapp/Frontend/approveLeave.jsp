@@ -63,7 +63,7 @@ font-size: 120%;
 <div class="container-fluid">
     <h2 class="text-center">Leave Details</h2>
     <span style="color: green; text-align: center; margin:0px 30px;">${msg}</span><br><br><br>
-
+<div class="table-responsive">
    <table class="table table-striped">
     <thead class="thead-dark">
         <tr>
@@ -121,7 +121,7 @@ font-size: 120%;
         </c:forEach>
     </tbody>
 </table>
-
+</div>
 </div>
 <%@ include file="footer.jsp" %>
 </body>

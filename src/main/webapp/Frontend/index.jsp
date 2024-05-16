@@ -37,35 +37,31 @@
     <script src="<c:url value='lib/lightbox/js/lightbox.min.js'/>"></script>
 
 <style>
-.header .logo img {
-	width: 120%;
-	height: 7vh;
-	top: 0;
-	left: 0;
+body
+{
+
 }
 
-#services {
-	margin-top: -90px;
-}
 
-.service {
-	padding: 32px;
-	background-color: #fff;
-	box-shadow: var(--shadow);
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-	/* horizontal-offset vertical-offset blur-radius color */
-	border: 1px solid white;
-	border-radius: 10px;
-	margin: 90px;
-	height: 40vh;
-}
 
-.service h5 {
-	margin-bottom: 14px;
-}
-
-.service img {
-	width: 910px;
+/* Media query for mobile devices */
+@media screen and (max-width: 900px) {
+    #p {
+        width: 105vw; /* Adjust width for mobile screens */
+    }
+   
+    #home
+    {
+    width:105vw;
+    
+    }
+    
+    #projects
+    {
+    font-size:90px;
+    }
+    
+    
 }
 </style>
 </head>
@@ -93,7 +89,7 @@
     </div>
   </section><br>
 
-  <div class="pt-5 pb-5" style="background-color: #f2f2f2; width:103vw;">
+  <div class="pt-5 pb-5" id="p" style="background-color: #f2f2f2;">
     <div class="container">
       <div class="row">
         <div class="section-head col-sm-12" id="service">
@@ -123,7 +119,7 @@
     </div>
 </div>
 
-  <section class="counters">
+  <section class="counters" id="p">
     <div class="container">
         <div>
             <i class="far fa-clock fa-4x"></i>
@@ -149,12 +145,12 @@
 </section>
 
 <div class="pt-5 pb-5">
-    <div class="container">
+    <div class="container" id="projects">
       <div class="row">
         <div class="section-head-1 col-sm-12" style="text-align: center;">
           <h4 style="margin-top: -5rem;" id="portfolio"><span>Our</span> Projects</h4>
           
-          <p>The objective of IT Company is to enable a large number of youth to take up <br>industry-relevant skill training that will help them<br> in securing a better livelihood.
+          <p id="#projects">The objective of IT Company is to enable a large number of youth to take up <br>industry-relevant skill training that will help them<br> in securing a better livelihood.
             </p>
         </div>
         
@@ -183,13 +179,13 @@
     </div>
 </div>
 
-<div class="communicate">
+<div class="communicate" id="p">
     <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
     <p>Lorem ipsum dolor sit amet.</p>
     <a href="#contact"><button class="btn">Contact Now</button></a>
 </div>
 
-<div class="testimonials mt-100">
+<div class="testimonials mt-100" id="p">
     <div class="container">
         <div class="section-header" style="text-align: center;">
             <h2 style="margin-top: -15rem;">Testimonials</h2>
@@ -303,7 +299,7 @@
 <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 <script src="lib/lightbox/js/lightbox.min.js"></script>
 
-<section class="team" style="margin-top: 7rem;">
+<section class="team" style="margin-top: 7rem;" id="p">
   <h1 class="heading" style="margin-top: -1.5rem;" id="team">our team</h1>
   <p></p>
   <div class="row">

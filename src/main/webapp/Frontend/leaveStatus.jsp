@@ -64,6 +64,7 @@ font-size: 120%;
     <h2 class="text-center">Leave Details</h2>
     <span style="color: green; text-align: center; margin:0px 30px;">${msg}</span><br><br><br>
 
+    <div class="table-responsive">
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>
@@ -74,38 +75,39 @@ font-size: 120%;
                 <th>End date</th>
                 <th>Reason</th>
                 <th>Status</th>
-                
-                
             </tr>
         </thead>
         <tbody>
-             <c:forEach var="leave" items="${leavesStatus}">
-            <tr>
-                <td>${leave.id}</td>
-                <td>${leave.employeeName}</td>
-                <td>${leave.employeeEmail}</td>
-                <td>${leave.startDate}</td>
-                <td>${leave.endDate}</td>
-                <td>${leave.reason}</td>
-<c:choose>
-
- <c:when test="${leave.status eq 3}">
-        <td>Rejected</td>
-    </c:when>
-    <c:when test="${leave.status eq 2}">
-        <td>Approved</td>
-    </c:when>
-    <c:when test="${leave.status eq 0}">
-        <td>Not Approved</td>
-    </c:when>
-    <c:otherwise>
-        <td>Approved By HR</td> <!-- Handle any other status values -->
-    </c:otherwise>
-</c:choose>
-            </tr>
-        </c:forEach>
+            <c:forEach var="leave" items="${leavesStatus}">
+                <tr>
+                    <td>${leave.id}</td>
+                    <td>${leave.employeeName}</td>
+                    <td>${leave.employeeEmail}</td>
+                    <td>${leave.startDate}</td>
+                    <td>${leave.endDate}</td>
+                    <td>${leave.reason}</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${leave.status eq 3}">
+                                Rejected
+                            </c:when>
+                            <c:when test="${leave.status eq 2}">
+                                Approved
+                            </c:when>
+                            <c:when test="${leave.status eq 0}">
+                                Not Approved
+                            </c:when>
+                            <c:otherwise>
+                                Approved By HR
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
+</div>
+
 </div>
 <%@ include file="footer.jsp" %>
 </body>
