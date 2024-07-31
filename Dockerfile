@@ -1,4 +1,4 @@
-FROM openjdk:11-jdk-slim
+FROM openjdk:17-jdk-slim
 WORKDIR /app
 COPY target/*.war /app/app.war
 EXPOSE 8079
