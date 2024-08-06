@@ -1,7 +1,5 @@
-FROM openjdk:17-slim
-RUN apt-get update
-RUN apt-get install  -y openjdk-17-jdk
-WORKDIR /app
-COPY . /app
-EXPOSE 8079
-CMD ["java", "-jar", "target/Demy-0.0.1-SNAPSHOT.war"]
+FROM openjdk:11
+COPY . /usr/src/myapp
+WORKDIR /usr/src/myapp
+RUN javac Main.java
+CMD ["java", "Main"]
