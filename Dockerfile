@@ -1,5 +1,5 @@
 FROM openjdk:17
-WORKDIR /usr/src/myapp
-COPY . /usr/src/myapp
+WORKDIR /myapp
+COPY . /myapp
 EXPOSE 8079
-CMD ["java", "target/Demy-0.0.1-SNAPSHOT.war"]
+CMD ["java","-jar", "target/Demy-0.0.1-SNAPSHOT.war"]
